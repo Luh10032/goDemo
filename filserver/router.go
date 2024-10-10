@@ -15,7 +15,11 @@ func Run() {
 }
 
 func router(r *gin.Engine) {
-	r.POST("/create", Create)
-	r.POST("/read", Read)
+	v1 := r.Group("/file")
+	{
+		v1.POST("/", Create)
+		v1.GET("/:name", Read)
+		v1.DELETE("/:name", Delete)
+	}
 
 }
